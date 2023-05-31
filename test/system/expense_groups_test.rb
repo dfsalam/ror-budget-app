@@ -14,6 +14,7 @@ class ExpenseGroupsTest < ApplicationSystemTestCase
     visit expense_groups_url
     click_on "New expense group"
 
+    fill_in "Amount", with: @expense_group.amount
     fill_in "Expense", with: @expense_group.expense_id
     fill_in "Group", with: @expense_group.group_id
     click_on "Create Expense group"
@@ -26,6 +27,7 @@ class ExpenseGroupsTest < ApplicationSystemTestCase
     visit expense_group_url(@expense_group)
     click_on "Edit this expense group", match: :first
 
+    fill_in "Amount", with: @expense_group.amount
     fill_in "Expense", with: @expense_group.expense_id
     fill_in "Group", with: @expense_group.group_id
     click_on "Update Expense group"

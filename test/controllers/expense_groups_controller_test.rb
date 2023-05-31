@@ -17,7 +17,7 @@ class ExpenseGroupsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create expense_group" do
     assert_difference("ExpenseGroup.count") do
-      post expense_groups_url, params: { expense_group: { expense_id: @expense_group.expense_id, group_id: @expense_group.group_id } }
+      post expense_groups_url, params: { expense_group: { amount: @expense_group.amount, expense_id: @expense_group.expense_id, group_id: @expense_group.group_id } }
     end
 
     assert_redirected_to expense_group_url(ExpenseGroup.last)
@@ -34,7 +34,7 @@ class ExpenseGroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update expense_group" do
-    patch expense_group_url(@expense_group), params: { expense_group: { expense_id: @expense_group.expense_id, group_id: @expense_group.group_id } }
+    patch expense_group_url(@expense_group), params: { expense_group: { amount: @expense_group.amount, expense_id: @expense_group.expense_id, group_id: @expense_group.group_id } }
     assert_redirected_to expense_group_url(@expense_group)
   end
 
