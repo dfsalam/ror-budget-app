@@ -1,14 +1,26 @@
 <p style="color: green"><%= notice %></p>
+<!--Categories page -->
+<% if user_signed_in? %>
+  <h1>Groups</h1>
 
-<h1>Groups</h1>
+  <div id="groups">
+    <% @groups.each do |group| %>
+      <%= render group %>
+      <p>
+        <%= link_to "Show this group", group %>
+      </p>
+    <% end %>
+  </div>
 
-<div id="groups">
-  <% @groups.each do |group| %>
-    <%= render group %>
-    <p>
-      <%= link_to "Show this group", group %>
-    </p>
-  <% end %>
-</div>
+  <%= link_to "New group", new_group_path %>
+<% else %>
+<section>
+  <div class="splash-title-container">
+    <h1 class="splash-title">RetrenchPal</h1>
+  </div>
+  <%= button_to "LOG IN", new_user_session_path, method: :get, class: 'splash-btn splash-btn-blue' %>
+  <%= button_to "SIGN UP", new_user_registration_path, method: :get, class: 'splash-btn' %>
+</section>
+<% end %>
 
-<%= link_to "New group", new_group_path %>
+
