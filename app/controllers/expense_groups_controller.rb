@@ -1,5 +1,5 @@
 class ExpenseGroupsController < ApplicationController
-  before_action :set_expense_group, only: %i[ show edit update destroy ]
+  before_action :set_expense_group, only: %i[show edit update destroy]
 
   # GET /expense_groups or /expense_groups.json
   def index
@@ -7,8 +7,7 @@ class ExpenseGroupsController < ApplicationController
   end
 
   # GET /expense_groups/1 or /expense_groups/1.json
-  def show
-  end
+  def show; end
 
   # GET /expense_groups/new
   def new
@@ -16,8 +15,7 @@ class ExpenseGroupsController < ApplicationController
   end
 
   # GET /expense_groups/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /expense_groups or /expense_groups.json
   def create
@@ -25,7 +23,7 @@ class ExpenseGroupsController < ApplicationController
 
     respond_to do |format|
       if @expense_group.save
-        format.html { redirect_to expense_group_url(@expense_group), notice: "Expense group was successfully created." }
+        format.html { redirect_to expense_group_url(@expense_group), notice: 'Expense group was successfully created.' }
         format.json { render :show, status: :created, location: @expense_group }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class ExpenseGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @expense_group.update(expense_group_params)
-        format.html { redirect_to expense_group_url(@expense_group), notice: "Expense group was successfully updated." }
+        format.html { redirect_to expense_group_url(@expense_group), notice: 'Expense group was successfully updated.' }
         format.json { render :show, status: :ok, location: @expense_group }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class ExpenseGroupsController < ApplicationController
     @expense_group.destroy
 
     respond_to do |format|
-      format.html { redirect_to expense_groups_url, notice: "Expense group was successfully destroyed." }
+      format.html { redirect_to expense_groups_url, notice: 'Expense group was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_expense_group
-      @expense_group = ExpenseGroup.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def expense_group_params
-      params.require(:expense_group).permit(:amount, :group_id, :expense_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_expense_group
+    @expense_group = ExpenseGroup.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def expense_group_params
+    params.require(:expense_group).permit(:amount, :group_id, :expense_id)
+  end
 end
