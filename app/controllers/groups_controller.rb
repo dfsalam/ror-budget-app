@@ -3,7 +3,11 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.all
+    @title = 'CATEGORIES'
+    return unless user_signed_in?
+
+    @current_user = current_user
+    @groups = Group.where(author_id: @current_user.id)
   end
 
   # GET /groups/1 or /groups/1.json
@@ -11,6 +15,8 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
+    @title = 'ADD NEW CATEGORY'
+    @current_user = current_user
     @group = Group.new
   end
 
@@ -23,7 +29,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to group_url(@group), notice: 'Group was successfully created.' }
+        format.html { redirect_to groups_url }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,6 +70,6 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:name, :icon)
+    params.require(:group).permit(:name, :icon, :author_id)
   end
 end

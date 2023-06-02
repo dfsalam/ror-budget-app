@@ -3,7 +3,9 @@ class ExpensesController < ApplicationController
 
   # GET /expenses or /expenses.json
   def index
-    @expenses = Expense.all
+    @title = 'TRANSACTIONS'
+    @group = Group.find(params[:group_id])
+    @expenses = ExpenseGroup.where(group_id: @group.id).order(created_at: :desc)
   end
 
   # GET /expenses/1 or /expenses/1.json
@@ -11,6 +13,7 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/new
   def new
+    @title = 'ADD NEW CATEGORY'
     @expense = Expense.new
   end
 
@@ -19,7 +22,10 @@ class ExpensesController < ApplicationController
 
   # POST /expenses or /expenses.json
   def create
-    @expense = Expense.new(expense_params)
+    @current_user = current_user
+    @expense = Expense.new(author_id: @current_user.id, name: expense_params[:name])
+    @expense_group = ExpenseGroup.create(group_id: expense_params[:group_id], expense_id: @expense.id,
+                                         amount: expense_params[:amount])
 
     respond_to do |format|
       if @expense.save
@@ -64,6 +70,6 @@ class ExpensesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def expense_params
-    params.require(:expense).permit(:name)
+    params.require(:expense).permit(:name, :amount, :group_id)
   end
 end

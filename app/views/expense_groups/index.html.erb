@@ -1,14 +1,13 @@
 <p style="color: green"><%= notice %></p>
+<div class="card flex-direction-row mt-1 ms-1 me-1 mb-1">
+  <h2 class="mt-2 ms-2">Total amount: $<%= @total_amount %></h2>
+</div>
 
-<h1>Expense groups</h1>
-
-<div id="expense_groups">
-  <% @expense_groups.each do |expense_group| %>
-    <%= render expense_group %>
-    <p>
-      <%= link_to "Show this expense group", expense_group %>
-    </p>
+<div id="expenses">
+  <% @expenses.includes(:group, :expense).each do |expense_group| %>    
+      <%= render expense_group %>      
   <% end %>
 </div>
 
-<%= link_to "New expense group", new_expense_group_path %>
+
+<%= button_to "ADD NEW TRANSACTION", new_group_expense_group_path(group_id: @group.id), method: :get, class: 'splash-btn green' %>
