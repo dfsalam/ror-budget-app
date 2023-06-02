@@ -6,6 +6,7 @@ class ExpenseGroupsController < ApplicationController
     @title = 'TRANSACTIONS'
     @group = Group.find(params[:group_id])
     @expenses = ExpenseGroup.where(group_id:@group.id).order(created_at: :desc)
+    @total_amount = ExpenseGroup.where(group_id: @group.id).sum(:amount)
   end
 
   # GET /expense_groups/1 or /expense_groups/1.json

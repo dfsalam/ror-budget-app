@@ -1,9 +1,10 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Transactions</h1>
+<div class="card flex-direction-row mt-1 ms-1 me-1 mb-1">
+  <h2 class="mt-2 ms-2">Total amount: $<%= @total_amount %></h2>
+</div>
 
 <div id="expenses">
-  <% @expenses.each do |expense_group| %>    
+  <% @expenses.includes(:group, :expense).each do |expense_group| %>    
       <%= render expense_group %>      
   <% end %>
 </div>

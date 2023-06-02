@@ -4,8 +4,10 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @title = "CATEGORIES"
-    @current_user= current_user
-    @groups = Group.where(author_id:@current_user.id)
+    if user_signed_in?
+      @current_user= current_user
+      @groups = Group.where(author_id:@current_user.id)
+    end
   end
 
   # GET /groups/1 or /groups/1.json
