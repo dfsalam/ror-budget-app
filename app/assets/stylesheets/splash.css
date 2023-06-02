@@ -42,6 +42,9 @@ a {
   background-color: #244c7a;
 }
 
+.forgot-text {
+  color:#0f0f0fb2
+}
 /* Log-in Sign-up navbar */
 .splash-nav {
   background-color: #377bc2;
@@ -77,4 +80,7 @@ a {
   background-color: #377bc2;
   color: white;
 }
+
+/* Log-in Sign-up navbar */
+
 
