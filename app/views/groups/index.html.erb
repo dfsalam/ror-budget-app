@@ -3,7 +3,7 @@
   <!--Categories page -->
   <div id="groups">
     <% @groups.each do |group| %>     
-      <%= link_to group_path(group) do%>
+      <%= link_to group_expense_groups_path(group) do%>
         <%= render group %>
       <%end%>      
     <% end %>

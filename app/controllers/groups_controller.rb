@@ -4,7 +4,8 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @title = "CATEGORIES"
-    @groups = Group.all
+    @current_user= current_user
+    @groups = Group.where(author_id:@current_user.id)
   end
 
   # GET /groups/1 or /groups/1.json
@@ -26,7 +27,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to group_url(@group), notice: 'Group was successfully created.' }
+        format.html { redirect_to groups_url}
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -3,7 +3,9 @@ class ExpenseGroupsController < ApplicationController
 
   # GET /expense_groups or /expense_groups.json
   def index
-    @expense_groups = ExpenseGroup.all
+    @title = 'TRANSACTIONS'
+    @group = Group.find(params[:group_id])
+    @expenses = ExpenseGroup.where(group_id:@group.id).order(created_at: :desc)
   end
 
   # GET /expense_groups/1 or /expense_groups/1.json
@@ -11,7 +13,9 @@ class ExpenseGroupsController < ApplicationController
 
   # GET /expense_groups/new
   def new
+    @title = 'ADD NEW TRANSACTION';
     @expense_group = ExpenseGroup.new
+    @group = Group.find(params[:group_id])
   end
 
   # GET /expense_groups/1/edit
@@ -19,15 +23,20 @@ class ExpenseGroupsController < ApplicationController
 
   # POST /expense_groups or /expense_groups.json
   def create
-    @expense_group = ExpenseGroup.new(expense_group_params)
+    @current_user = current_user
+    group_id = expense_group_params[:g_id]
+    @expense_group = ExpenseGroup.new(group_id: group_id, amount: expense_group_params[:amount])
+  
+  @expense = @current_user.expenses.build(name: expense_group_params[:name])
+  @expense.expense_groups << @expense_group
 
     respond_to do |format|
-      if @expense_group.save
-        format.html { redirect_to expense_group_url(@expense_group), notice: 'Expense group was successfully created.' }
-        format.json { render :show, status: :created, location: @expense_group }
+      if @expense.save      
+        format.html { redirect_to group_expense_groups_url(group_id)}
+        format.json { render :show, status: :created, location: @expense }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @expense_group.errors, status: :unprocessable_entity }
+        format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,6 +73,6 @@ class ExpenseGroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def expense_group_params
-    params.require(:expense_group).permit(:amount, :group_id, :expense_id)
+    params.require(:expense_group).permit(:amount, :expense_id, :name, :g_id)
   end
 end
