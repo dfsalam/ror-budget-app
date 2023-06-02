@@ -1,12 +1,11 @@
-<div id="<%= dom_id group %>">
-  <p>
-    <strong>Name:</strong>
-    <%= group.name %>
-  </p>
-
-  <p>
-    <strong>Icon:</strong>
-    <%= group.icon %>
-  </p>
-
+<div id="<%= dom_id(group) %>">
+  <div class="card mb-3 flex-row">
+    <div class="mt-2" style="max-width: 30%;">
+      <img src="<%= group.icon %>" class="img-fluid rounded-start" alt="Icon">
+    </div>
+    <div class="mt-2" style="max-width: 60%;">      
+        <h5 class="card-title">Name: <%= group.name %></h5>
+        <p class="card-text">Total amount:</p>   
+    </div>
+  </div>  
 </div>

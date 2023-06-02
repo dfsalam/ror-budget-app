@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
+    @title = "CATEGORIES"
     @groups = Group.all
   end
 
@@ -11,6 +12,8 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
+    @title = "ADD NEW CATEGORY"
+    @current_user = current_user
     @group = Group.new
   end
 
@@ -18,7 +21,7 @@ class GroupsController < ApplicationController
   def edit; end
 
   # POST /groups or /groups.json
-  def create
+  def create   
     @group = Group.new(group_params)
 
     respond_to do |format|
@@ -64,6 +67,6 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:name, :icon)
+    params.require(:group).permit(:name, :icon, :author_id)
   end
 end

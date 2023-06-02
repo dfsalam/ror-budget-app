@@ -1,19 +1,17 @@
 <p style="color: green"><%= notice %></p>
-<!--Categories page -->
 <% if user_signed_in? %>
-  <h1>Groups</h1>
-
+  <!--Categories page -->
   <div id="groups">
-    <% @groups.each do |group| %>
-      <%= render group %>
-      <p>
-        <%= link_to "Show this group", group %>
-      </p>
+    <% @groups.each do |group| %>     
+      <%= link_to group_path(group) do%>
+        <%= render group %>
+      <%end%>      
     <% end %>
   </div>
-
-  <%= link_to "New group", new_group_path %>
+  
+  <%= button_to "ADD NEW CATEGORY", new_group_path, method: :get, class: 'splash-btn green' %>
 <% else %>
+<!--Splash page -->
 <section>
   <div class="splash-title-container">
     <h1 class="splash-title">RetrenchPal</h1>
