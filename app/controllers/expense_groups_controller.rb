@@ -5,7 +5,7 @@ class ExpenseGroupsController < ApplicationController
   def index
     @title = 'TRANSACTIONS'
     @group = Group.find(params[:group_id])
-    @expenses = ExpenseGroup.where(group_id:@group.id).order(created_at: :desc)
+    @expenses = ExpenseGroup.where(group_id: @group.id).order(created_at: :desc)
     @total_amount = ExpenseGroup.where(group_id: @group.id).sum(:amount)
   end
 
@@ -14,7 +14,7 @@ class ExpenseGroupsController < ApplicationController
 
   # GET /expense_groups/new
   def new
-    @title = 'ADD NEW TRANSACTION';
+    @title = 'ADD NEW TRANSACTION'
     @expense_group = ExpenseGroup.new
     @group = Group.find(params[:group_id])
   end
@@ -26,14 +26,14 @@ class ExpenseGroupsController < ApplicationController
   def create
     @current_user = current_user
     group_id = expense_group_params[:g_id]
-    @expense_group = ExpenseGroup.new(group_id: group_id, amount: expense_group_params[:amount])
-  
-  @expense = @current_user.expenses.build(name: expense_group_params[:name])
-  @expense.expense_groups << @expense_group
+    @expense_group = ExpenseGroup.new(group_id:, amount: expense_group_params[:amount])
+
+    @expense = @current_user.expenses.build(name: expense_group_params[:name])
+    @expense.expense_groups << @expense_group
 
     respond_to do |format|
-      if @expense.save      
-        format.html { redirect_to group_expense_groups_url(group_id)}
+      if @expense.save
+        format.html { redirect_to group_expense_groups_url(group_id) }
         format.json { render :show, status: :created, location: @expense }
       else
         format.html { render :new, status: :unprocessable_entity }

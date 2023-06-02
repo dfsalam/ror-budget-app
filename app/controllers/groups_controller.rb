@@ -3,11 +3,11 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    @title = "CATEGORIES"
-    if user_signed_in?
-      @current_user= current_user
-      @groups = Group.where(author_id:@current_user.id)
-    end
+    @title = 'CATEGORIES'
+    return unless user_signed_in?
+
+    @current_user = current_user
+    @groups = Group.where(author_id: @current_user.id)
   end
 
   # GET /groups/1 or /groups/1.json
@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @title = "ADD NEW CATEGORY"
+    @title = 'ADD NEW CATEGORY'
     @current_user = current_user
     @group = Group.new
   end
@@ -24,12 +24,12 @@ class GroupsController < ApplicationController
   def edit; end
 
   # POST /groups or /groups.json
-  def create   
+  def create
     @group = Group.new(group_params)
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to groups_url}
+        format.html { redirect_to groups_url }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -3,7 +3,7 @@
 
 body {
   background-color: #f0f2f1;
-  margin:0;
+  margin: 0;
 }
 
 a {
@@ -11,7 +11,7 @@ a {
 }
 
 .splash-title-container {
-  height: 70svh;
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@ a {
 
 .splash-title {
   font-family: 'Leckerli One', cursive;
-  font-size: 40px;  
+  font-size: 40px;
 }
 
 .splash-btn {
@@ -34,18 +34,19 @@ a {
 }
 
 .splash-btn-blue {
-  background-color: #3878c2;  
-  color: white;  
+  background-color: #3878c2;
+  color: white;
 }
 
 .splash-btn:hover {
   background-color: #244c7a;
-  color:white;
+  color: white;
 }
 
 .forgot-text {
-  color:#0f0f0fb2
+  color: #0f0f0fb2;
 }
+
 /* Log-in Sign-up navbar */
 .splash-nav {
   background-color: #377bc2;
@@ -83,5 +84,3 @@ a {
 }
 
 /* Log-in Sign-up navbar */
-
-
