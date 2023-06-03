@@ -4,7 +4,8 @@ databases:
 
 services:
   - type: web
-    name: rails    
+    name: rails
+    plan: free
     env: ruby
     buildCommand: './bin/render-build.sh'
     startCommand: bundle exec rails s
