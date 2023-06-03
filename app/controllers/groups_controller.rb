@@ -33,11 +33,15 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to groups_url, notice: 'Category was successfully created.' }
+        format.html { redirect_to groups_url}
         format.json { render :show, status: :created, location: @group }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html do
+          flash[:error] = @group.errors.full_messages.to_sentence
+          redirect_to groups_path # Replace with the appropriate path for the new form
+        end
         format.json { render json: @group.errors, status: :unprocessable_entity }
+       
       end
     end
   end

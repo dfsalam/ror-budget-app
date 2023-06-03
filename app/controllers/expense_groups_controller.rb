@@ -33,11 +33,13 @@ class ExpenseGroupsController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to group_expense_groups_url(group_id) }
+        format.html { redirect_to group_expense_groups_url(group_id)}
         format.json { render :show, status: :created, location: @expense }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @expense.errors, status: :unprocessable_entity }
+        format.html do
+          flash[:error] = @expense_group.errors.full_messages.to_sentence
+          redirect_to group_expense_groups_path(group_id)
+        end
       end
     end
   end

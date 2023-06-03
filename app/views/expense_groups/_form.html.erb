@@ -19,7 +19,11 @@
     <%= form.text_field :amount, placeholder: "Amount", class:"form-control" %>
   </div>
   <div style="display: none;">
-    <%= form.text_field :g_id, value: @group.id %>
+    <% if @group != nil %>
+      <%= form.text_field :g_id, value: @group.id %>
+    <% else %>
+      <%= form.text_field :g_id, value: nil %>
+    <% end %>
   </div>
   
   <div class="mt-3">
