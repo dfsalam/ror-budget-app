@@ -23,11 +23,11 @@ class GroupsController < ApplicationController
     @author_id = @current_user.id
     @name = group_params[:name]
     @icon = group_params[:icon]
-    @group = Group.new(author_id:@author_id, name:@name, icon:@icon)
+    @group = Group.new(author_id: @author_id, name: @name, icon: @icon)
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to groups_url}
+        format.html { redirect_to groups_url }
         format.json { render :show, status: :created, location: @group }
       else
         format.html do
@@ -35,10 +35,10 @@ class GroupsController < ApplicationController
           redirect_to groups_path # Replace with the appropriate path for the new form
         end
         format.json { render json: @group.errors, status: :unprocessable_entity }
-       
+
       end
     end
-  end 
+  end
 
   private
 

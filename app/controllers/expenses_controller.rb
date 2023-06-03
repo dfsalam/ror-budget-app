@@ -14,7 +14,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.new
   end
 
-   # POST /expenses or /expenses.json
+  # POST /expenses or /expenses.json
   def create
     @current_user = current_user
     @expense = Expense.new(author_id: @current_user.id, name: expense_params[:name])
@@ -30,7 +30,7 @@ class ExpensesController < ApplicationController
         format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
     end
-  end 
+  end
 
   private
 

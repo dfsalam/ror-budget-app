@@ -27,7 +27,7 @@ class ExpenseGroupsController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to group_expense_groups_url(group_id)}
+        format.html { redirect_to group_expense_groups_url(group_id) }
         format.json { render :show, status: :created, location: @expense }
       else
         format.html do
