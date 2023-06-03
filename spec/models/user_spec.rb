@@ -12,8 +12,8 @@ RSpec.describe User, type: :model do
   end
   describe 'Name' do
     let(:user) { User.new(name: nil, email: 'test@test.com') }
-    it 'should not be blank.' do     
+    it 'should not be blank.' do
       expect(user).to_not be_valid
-    end 
+    end
   end
 end

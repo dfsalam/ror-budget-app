@@ -10,11 +10,11 @@ RSpec.describe 'Groups', type: :request do
   end
   let(:group) do
     Group.create!(
-      name: 'Utilities', icon:'asdfg', author_id:user.id
+      name: 'Utilities', icon: 'asdfg', author_id: user.id
     )
   end
   describe 'GET /index' do
-    before(:each) do      
+    before(:each) do
       user.save
       group.save
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -39,12 +39,12 @@ RSpec.describe 'Groups', type: :request do
 
     it 'Test if /groups has the right group created' do
       get '/groups'
-      expect(response.body).to include('Utilities')      
+      expect(response.body).to include('Utilities')
     end
 
     it 'Test if the button ADD NEW CATEGORY is present' do
-      get "/groups"
+      get '/groups'
       expect(response.body).to include('ADD NEW CATEGORY')
     end
-  end  
+  end
 end

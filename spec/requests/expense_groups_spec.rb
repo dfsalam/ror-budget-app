@@ -10,32 +10,32 @@ RSpec.describe 'Expense_groups', type: :request do
   end
   let(:group) do
     Group.create!(
-      name: 'Utilities', icon:'asdfg', author_id:user.id
+      name: 'Utilities', icon: 'asdfg', author_id: user.id
     )
   end
   let(:expense1) do
     Expense.create!(
-      name: 'Electricity', author_id:user.id
+      name: 'Electricity', author_id: user.id
     )
   end
   let(:expense2) do
     Expense.create!(
-      name: 'Gas', author_id:user.id
+      name: 'Gas', author_id: user.id
     )
   end
   let(:expense_group1) do
     ExpenseGroup.create!(
-      amount: 15, group_id:group.id, expense_id:expense1.id
+      amount: 15, group_id: group.id, expense_id: expense1.id
     )
   end
   let(:expense_group2) do
     ExpenseGroup.create!(
-      amount: 10, group_id:group.id, expense_id:expense2.id
+      amount: 10, group_id: group.id, expense_id: expense2.id
     )
   end
 
   describe 'GET /index' do
-    before(:each) do      
+    before(:each) do
       user.save
       group.save
       expense1.save
@@ -65,12 +65,12 @@ RSpec.describe 'Expense_groups', type: :request do
     it 'Test if Utilities is present also the correct total amount' do
       get "/groups/#{group.id}/expense_groups"
       expect(response.body).to include('Utilities')
-      expect(response.body).to include('Total amount: $25.0')     
+      expect(response.body).to include('Total amount: $25.0')
     end
 
     it 'Test if the button ADD NEW TRANSACTION is present' do
       get "/groups/#{group.id}/expense_groups"
       expect(response.body).to include('ADD NEW TRANSACTION')
     end
-  end  
+  end
 end
