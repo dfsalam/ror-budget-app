@@ -9,18 +9,12 @@ class ExpenseGroupsController < ApplicationController
     @total_amount = ExpenseGroup.where(group_id: @group.id).sum(:amount)
   end
 
-  # GET /expense_groups/1 or /expense_groups/1.json
-  def show; end
-
   # GET /expense_groups/new
   def new
     @title = 'ADD NEW TRANSACTION'
     @expense_group = ExpenseGroup.new
     @group = Group.find(params[:group_id])
   end
-
-  # GET /expense_groups/1/edit
-  def edit; end
 
   # POST /expense_groups or /expense_groups.json
   def create
@@ -41,29 +35,6 @@ class ExpenseGroupsController < ApplicationController
           redirect_to group_expense_groups_path(group_id)
         end
       end
-    end
-  end
-
-  # PATCH/PUT /expense_groups/1 or /expense_groups/1.json
-  def update
-    respond_to do |format|
-      if @expense_group.update(expense_group_params)
-        format.html { redirect_to expense_group_url(@expense_group), notice: 'Expense group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @expense_group }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @expense_group.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /expense_groups/1 or /expense_groups/1.json
-  def destroy
-    @expense_group.destroy
-
-    respond_to do |format|
-      format.html { redirect_to expense_groups_url, notice: 'Expense group was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
