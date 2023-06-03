@@ -1,15 +1,16 @@
 <p style="color: green"><%= notice %></p>
 <% if user_signed_in? %>
   <!--Categories page -->
-  <div id="groups">
+  <div id="groups" class="list-body">
     <% @groups.each do |group| %>     
       <%= link_to group_expense_groups_path(group) do%>
         <%= render group %>
       <%end%>      
     <% end %>
   </div>
-  
-  <%= button_to "ADD NEW CATEGORY", new_group_path, method: :get, class: 'splash-btn green' %>
+  <div>
+    <%= button_to "ADD NEW CATEGORY", new_group_path, method: :get, class: 'splash-btn green' %>
+  </div>
 <% else %>
 <!--Splash page -->
 <section>

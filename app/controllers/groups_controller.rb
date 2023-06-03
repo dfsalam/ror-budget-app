@@ -10,9 +10,6 @@ class GroupsController < ApplicationController
     @groups = Group.where(author_id: @current_user.id)
   end
 
-  # GET /groups/1 or /groups/1.json
-  def show; end
-
   # GET /groups/new
   def new
     @title = 'ADD NEW CATEGORY'
@@ -20,44 +17,26 @@ class GroupsController < ApplicationController
     @group = Group.new
   end
 
-  # GET /groups/1/edit
-  def edit; end
-
   # POST /groups or /groups.json
   def create
-    @group = Group.new(group_params)
+    @current_user = current_user
+    @author_id = @current_user.id
+    @name = group_params[:name]
+    @icon = group_params[:icon]
+    @group = Group.new(author_id: @author_id, name: @name, icon: @icon)
 
     respond_to do |format|
       if @group.save
         format.html { redirect_to groups_url }
         format.json { render :show, status: :created, location: @group }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html do
+          flash[:error] = @group.errors.full_messages.to_sentence
+          redirect_to groups_path # Replace with the appropriate path for the new form
+        end
         format.json { render json: @group.errors, status: :unprocessable_entity }
+
       end
-    end
-  end
-
-  # PATCH/PUT /groups/1 or /groups/1.json
-  def update
-    respond_to do |format|
-      if @group.update(group_params)
-        format.html { redirect_to group_url(@group), notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /groups/1 or /groups/1.json
-  def destroy
-    @group.destroy
-
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -70,6 +49,6 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:name, :icon, :author_id)
+    params.require(:group).permit(:name, :icon)
   end
 end
