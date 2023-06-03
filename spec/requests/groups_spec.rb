@@ -41,5 +41,10 @@ RSpec.describe 'Groups', type: :request do
       get '/groups'
       expect(response.body).to include('Utilities')      
     end
+
+    it 'Test if the button ADD NEW CATEGORY is present' do
+      get "/groups"
+      expect(response.body).to include('ADD NEW CATEGORY')
+    end
   end  
 end
