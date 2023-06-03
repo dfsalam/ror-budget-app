@@ -25,11 +25,15 @@ class GroupsController < ApplicationController
 
   # POST /groups or /groups.json
   def create
-    @group = Group.new(group_params)
+    @current_user = current_user
+    @author_id = @current_user.id
+    @name = group_params[:name]
+    @icon = group_params[:icon]
+    @group = Group.new(author_id:@author_id, name:@name, icon:@icon)
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to groups_url }
+        format.html { redirect_to groups_url, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -70,6 +74,6 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:name, :icon, :author_id)
+    params.require(:group).permit(:name, :icon)
   end
 end

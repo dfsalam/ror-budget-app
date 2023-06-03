@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
-
 body {
   background-color: #f0f2f1;
   margin: 0;
@@ -18,7 +15,7 @@ a {
 }
 
 .splash-title {
-  font-family: 'Leckerli One', cursive;
+  font-family: 'Lobster', cursive;
   font-size: 40px;
 }
 
