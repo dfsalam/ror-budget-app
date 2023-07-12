@@ -1,0 +1,18 @@
+<div class="d-flex flex-column">
+  <div class="list-body">  
+    <p style="color: green"><%= notice %></p>
+    <div class="card flex-row mt-1 ms-1 me-1 mb-1">
+      <h2 class="mt-2 ms-2">Total amount: $<%= @total_amount %></h2>
+    </div>
+
+    <div id="expenses">
+      <% @expenses.includes(:group, :expense).each do |expense_group| %>    
+          <%= render expense_group %>      
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <%= button_to "ADD NEW TRANSACTION", new_group_expense_group_path(group_id: @group.id), method: :get, class: 'splash-btn green' %>
+  </div>
+</div>

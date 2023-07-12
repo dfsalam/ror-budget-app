@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+<% if user_signed_in? %>
+  <!--Categories page -->
+  <div id="groups" class="list-body">
+    <% @groups.each do |group| %>     
+      <%= link_to group_expense_groups_path(group) do%>
+        <%= render group %>
+      <%end%>      
+    <% end %>
+  </div>
+  <div>
+    <%= button_to "ADD NEW CATEGORY", new_group_path, method: :get, class: 'splash-btn green' %>
+  </div>
+<% else %>
+<!--Splash page -->
+<section>
+  <div class="splash-title-container">
+    <h1 class="splash-title">RetrenchPal</h1>
+  </div>
+  <%= button_to "LOG IN", new_user_session_path, method: :get, class: 'splash-btn splash-btn-blue' %>
+  <%= button_to "SIGN UP", new_user_registration_path, method: :get, class: 'splash-btn' %>
+</section>
+<% end %>
+
+

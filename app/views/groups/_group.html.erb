@@ -1,0 +1,12 @@
+<div id="<%= dom_id(group) %>" class="ms-3 me-3">
+  <div class="card mb-3 flex-row">
+    <div class="mt-2" style="max-width: 30%;">
+      <img src="<%= group.icon %>" class="img-fluid rounded-start" alt="Icon">
+    </div>
+    <div class="mt-2 ms-3" style="max-width: 60%;">      
+        <h5 class="card-title">Name: <%= group.name %></h5>
+        <% amount = ExpenseGroup.where(group_id: group.id).sum(:amount) %>
+        <p class="card-text">Total amount: $<%= amount %></p>   
+    </div>
+  </div>  
+</div>

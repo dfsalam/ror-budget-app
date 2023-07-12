@@ -1,0 +1,83 @@
+body {
+  background-color: #f0f2f1;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.splash-title-container {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-title {
+  font-family: 'Lobster', cursive;
+  font-size: 40px;
+}
+
+.splash-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 5px;
+  border: none;
+  text-align: center;
+  color: #052d5c;
+  border-radius: 5px;
+}
+
+.splash-btn-blue {
+  background-color: #3878c2;
+  color: white;
+}
+
+.splash-btn:hover {
+  background-color: #244c7a;
+  color: white;
+}
+
+.forgot-text {
+  color: #0f0f0fb2;
+}
+
+/* Log-in Sign-up navbar */
+.splash-nav {
+  background-color: #377bc2;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  width: 100%;
+}
+
+.splash-arrow {
+  color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-bar-text {
+  font-size: 18px;
+  padding: 20px;
+  margin-bottom: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.login-submit-btn {
+  display: flex;
+  align-self: center;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #377bc2;
+  color: white;
+}
+
+/* Log-in Sign-up navbar */

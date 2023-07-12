@@ -1,0 +1,21 @@
+<nav class="splash-nav d-flex">
+  <% if @title == "ADD NEW TRANSACTION"%>
+      <%= link_to group_expense_groups_path(params[:group_id]), class: 'splash-arrow ms-2' do %>
+      <span class="material-symbols-outlined splash-arrow">
+      arrow_back
+      </span>
+    <% end %>
+  <% else %>
+    <%= link_to groups_path, class: 'splash-arrow ms-2' do %>
+      <span class="material-symbols-outlined splash-arrow">
+      arrow_back
+      </span>
+    <% end %>
+  <% end %>
+  <h2 class="nav-bar-text align-self-center"><%= @title %></h2>
+  <%= link_to destroy_user_session_path, "data-turbo-method": :delete, class: 'splash-arrow me-2' do%>
+  <span class="material-symbols-outlined splash-arrow">
+    Logout
+    </span>
+  <% end %>
+</nav>

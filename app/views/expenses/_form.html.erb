@@ -1,0 +1,28 @@
+<%= form_with(model: expense, url: group_expenses_path) do |form| %>
+  <% if expense.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+
+      <ul>
+        <% expense.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-1 mt-1">    
+    <%= form.text_field :name, placeholder: "Name", class:"form-control" %>
+  </div>
+
+  <div class="mb-1">    
+    <%= form.text_field :amount, placeholder: "Amount", class:"form-control" %>
+  </div>
+  <div style="display: none;">
+    <%= form.text_field :group_id, value: :group_id %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.submit "SAVE", class: 'splash-btn green' %>
+  </div>
+<% end %>
