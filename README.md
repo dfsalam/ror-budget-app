@@ -78,7 +78,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://mysite-a6f8.onrender.com/)
+- [Live Demo Link](https://mysite-1w9b.onrender.com)
 
 - [Video](https://www.loom.com/share/56db2c2fbf834886a8c844238777681c)
 
